@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Extension to get metrics into Graphite"
   spec.description   = "Extension to get metrics into Graphite"
-  spec.homepage      = "https://github.com/sensu-extensions/sensu-extensions-graphite"
+  spec.homepage      = "https://github.com/amine7536/sensu-extensions-graphite"
 
   spec.files         = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
   spec.require_paths = ["lib"]
