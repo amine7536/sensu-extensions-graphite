@@ -1,11 +1,63 @@
-# Sensu::Extensions::Template
+# Sensu::Extensions::Graphite
 
-Welcome to the Sensu Extensions repository template! In this repository, you will find the files you need to be able to author your own Sensu Extension for Sensu Core (>= 0.26).
+This Extensions use Graphite `plaintext` protocol to relay metrics. It opens a presistant TCP connection to Graphite to send its metrics.
 
-## Usage
+## Install
 
-1. Fork this repository and name the fork after your new extension, e.g. `"sensu-extensions-docker"`
+1. Using RubyGem (using sensu vendor ruby) :
 
-2. Write your extension (with tests!)
+```bash
+$> /opt/sensu/embedded/bin/gem install sensu-extensions-graphite
+``` 
 
-3. Create a GitHub issue on [sensu-extensions/template](https://github.com/sensu-extensions/template/issues) to request a review of your extension, to determine if it is ready to be moved to the [sensu-extensions GitHub organization](https://github.com/sensu-extensions) to be shared with the Sensu community!
+2. Using RPM :
+
+```bash
+$> rpm -Uvh https://github.com/amine7536/sensu-extensions-graphite/releases/download/v0.0.2/rubygem-sensu-extensions-graphite-0.0.2-1.noarch.rpm
+```
+
+## Configuration
+
+1. Enable the extension :
+
+Add the following to your Sensu configuration `/etc/sensu/conf.d/extensions.json` :
+
+```json
+{
+  "extensions": {
+    "graphite": {
+      "gem": "sensu-extensions-graphite"
+    }
+  }
+}
+```
+
+2. Configure the extention :
+
+Add the following to your Sensu configuration `/etc/sensu/conf.d/graphite.json` :
+
+```json
+{
+  "graphite": {
+    "name": "graphite",
+    "host": "192.168.43.21",
+    "port": 9000
+  }
+}
+```
+
+3. Example metric :
+
+```json
+{
+  "checks": {
+    "vmstat_metrics": {
+      "type": "metric",
+      "handlers": ["graphite"],
+      "command": "/etc/sensu/plugins/vmstat-metrics.rb --scheme stats.:::name:::",
+      "interval": 10,
+      "subscribers": ["all"]
+    }
+  }
+}
+```
