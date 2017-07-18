@@ -2,6 +2,10 @@
 
 This Extensions use Graphite `plaintext` protocol to relay metrics. It opens a presistant TCP connection to Graphite to send its metrics.
 
+This extensions is a ripoff :
+- [https://github.com/sendgrid-ops/sensu-metrics-relay/]()
+- [https://github.com/lusis/sensu_influxdb_handler]()
+
 ## Install
 
 1. Using RubyGem (using sensu vendor ruby) :
