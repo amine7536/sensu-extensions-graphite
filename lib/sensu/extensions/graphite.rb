@@ -124,7 +124,7 @@ module Sensu
   ##########################################
   class Endpoint
 
-    # EM::Connection.send_data batches network connection writes in 16KB
+    # EM::Connection.send_data batches network connection writes in 2KB
     # We should start out by having all data in the queue flush in the
     # space of a single loop tick.
     MAX_QUEUE_SIZE = 2048
